@@ -1,0 +1,15 @@
+<div class="container">
+    <h1 class="text-center">글 수정하기</h1>
+    <form action="/update/<%= @post.id %>" method="post" class="form">
+        <div class="form-group">
+            <label for="inputTitle">title</label>
+            <input type="text" class="form-control" name="title" placeholder="insert Title" value="<%= @post.title %>">
+        </div>
+        <div class="form-group">
+            <label for="inputContent">content</label>
+            <textarea name="content" class="form-control" placeholder="insert content"><%= @post.content %></textarea>
+        </div>
+        <button class="btn btn-default">modify</button>
+    </form>
+</div>
+

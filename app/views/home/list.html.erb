@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 class="text-center">이야기 정류장</h1>
+    <p class="lead text-center">당신의 이야기를 자유롭게 써주세요</p>
+    <p><a href="/index" class="btn btn-default">새글쓰기</a></p>
+    <table class="table table-hover">
+        <thead>
+            <th>index</th>
+            <th>title</th>
+            <th>read it!</th>
+        </thead>
+        <tbody>
+            <% @all.each do |post| %>
+            <tr>
+                <td><%= post.id %></td>
+                <td><a href="/show/<%= post.id %>" style="text-decoration:none;color:#444444"><%= post.title %></a></td>
+                <td><a href="/show/<%= post.id %>" style="text-decoration:none;color:#ff4444">Read it!</a></td>
+            </tr>
+            <% end %>        
+        </tbody>
+    </table>
+</div>
+
+
