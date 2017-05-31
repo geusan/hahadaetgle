@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   
+  get '/logout' => 'user#logout'
+
+  post '/user_login' => 'user#user_login'
+
+  post '/register' => 'user#register'
+
+  get '/signup' =>'user#signup'
+
   root 'home#list'
+  
+  get '/login' => 'user#login'
   
   get '/index' => 'home#index'
 
