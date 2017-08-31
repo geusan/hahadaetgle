@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_action :authorize
   def index
-    
+    @author = session[:user_name]
   end
 
   def list
@@ -13,12 +13,14 @@ class HomeController < ApplicationController
     # @replies = Reply.where("postId = #{params[:id]}")
     # @replies = Reply.where(postId: params[:id]) // 다른방법 같은 결과
     @replies = @post.replies
+    @myName = session[:user_name]
   end
   
   def write
     newPost = Post.new
     newPost.title = params[:title]
     newPost.content = params[:content]
+    newPost.author = params[:author]
     newPost.save
     
     redirect_to "/list"
@@ -42,6 +44,7 @@ class HomeController < ApplicationController
     u_post = Post.find(params[:id])
     u_post.title = params[:title]
     u_post.content = params[:content]
+    u_post.author = params[:author]
     u_post.save
     
     redirect_to "/show/#{params[:id]}"

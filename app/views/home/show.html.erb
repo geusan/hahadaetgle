@@ -10,26 +10,27 @@
         <p class="col-md-2 col-sm-12 col-xs-12"><bold>글 내용</bold></p>
         <p class="col-md-10 col-sm-12 col-xs-12 lead"><%= @post.content %></p>
     </div>
+    <% if @myName == @post.author %>
     <div class="row">
         <p class="col-md-1 col-sm-2 col-xs-2"><a href="/modify/<%= @post.id %>" class="btn btn-default">수정하기</a></p>
         <p class="col-md-3 col-sm-3 col-xs-3"><a href="/delete/<%= @post.id %>" class="btn btn-default"> 삭제하기</a></p>
     </div>
+    <% end %>
+    
 <hr>
 
 <form action="/reply" method="post" class="form">
     <div class="row">
-        <div class="form-group col-md-2 col-sm-2 col-xs-2">
-            <label for="inputAuthor">author</label>
-            <input type="text" class="form-control" name="author" placeholder="author">
-        </div>
+        
         <div class="form-group col-md-10 col-sm-10 col-xs-10">
             <label for="inputAuthor">comment</label>
             <textarea name="content" placeholder="comment yourself" class="form-control"></textarea>
-        </div>    
+        </div>
     </div>
     <div class="row">
         <div class="form-group">
             <input type="hidden" name="post_id" value="<%= @post.id %>">
+            <input type="hidden" class="form-control" name="author" value="<%= @myName %>">
         </div>
         <button class="btn btn-default">댓글쓰기</button>
     </div>
@@ -49,7 +50,9 @@
             <td><%= reply.author %></td>
             <td><%= reply.content %></td>
             <td><%= reply.created_at.strftime("%y-%m-%d") %></td>
+            <% if reply.author == @myName %>
             <td><p><a href="/reply_delete/<%= @post.id %>/<%= reply.id %>" class="btn btn-default">삭제</a></p></td>
+            <% end %>
         </tr>
             
         <% end %>

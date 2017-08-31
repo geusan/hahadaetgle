@@ -30,6 +30,7 @@ class UserController < ApplicationController
     if user.present? && user.authenticate(params[:password])
       # login success
       session[:user_id] = user.id
+      session[:user_name] = user.email
       redirect_to "/"
     else
       redirect_to "/login"
@@ -38,6 +39,7 @@ class UserController < ApplicationController
   
   def logout
     session[:user_id] = nil
+    session[:user_name] = nil
     redirect_to "/"
   end
 end
